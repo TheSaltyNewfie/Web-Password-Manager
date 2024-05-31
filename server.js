@@ -4,6 +4,7 @@ const cors = require('cors')
 const logger = require('morgan')
 const bodyParser = require('body-parser')
 const loginController = require('./controllers/loginController')
+const accountController = require('./controllers/accountController')
 
 const PORT = process.env.PORT || 3000
 
@@ -19,6 +20,8 @@ app.get('/', (req, res) => {
 
 app.post('/login', loginController.authenticate)
 app.post('/token', loginController.tokenGenerator)
+
+app.get('/accounts', accountController.getAccounts)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
