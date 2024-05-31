@@ -15,7 +15,7 @@ const main = async () => {
         Username: 'admin',
         PasswordHash: 'admin',
         Email: 'admin@thesaltynewfie.ca',
-        Token: 'null'
+        Token: 'null',
     },
     {
         Username: 'JohnDoe',

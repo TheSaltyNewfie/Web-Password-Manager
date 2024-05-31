@@ -6,7 +6,8 @@ const User = new Schema(
         Username: { type: String, required: true },
         PasswordHash: { type: String, required: true },
         Email: { type: String, required: true },
-        Token: { type: String, required: false },
+        Token: { type: String, required: true },
+        ValidUntil: { type: Number, required: false }
     },
     { timestamps: true },
 )
