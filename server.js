@@ -18,10 +18,12 @@ app.get('/', (req, res) => {
     res.send('Server is running!')
 })
 
-app.post('/login', loginController.authenticate)
+//TODO: Implement the login route
+//app.post('/login', loginController.authenticate)
 app.post('/token', loginController.tokenGenerator)
 
 app.get('/accounts', accountController.getAccounts)
+app.post('/accounts', accountController.addAccount)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
