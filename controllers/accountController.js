@@ -4,11 +4,12 @@ const bcrypt = require('bcrypt')
 
 const getAccounts = async (req, res) => {
     try {
-        const {Token, Username} = req.body
-        const user = await User.findOne({Username: Username})
+        const {Token} = req.body
         
-        if (user.Token !== Token) {
-            return res.status(401).json({ error: 'Unauthorized' })
+        const user = await User.findOne({Token: Token})
+
+        if(!user) {
+            return res.status(401).json({ error: 'Invalid token' })
         }
 
         if(user.ValidUntil < Date.now()) {
