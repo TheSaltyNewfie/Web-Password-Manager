@@ -19,20 +19,19 @@ const tokenGenerator = async (req, res) => {
     try {
         const { Username, PasswordHash } = req.body
         const user = await User.findOne({Username: Username, PasswordHash: PasswordHash})
-        const token = await bcrypt.hash(user._id.toString() + "_" + Date.now, 10)
+        const length = 32
+        const bytes = Math.ceil(length * 3 / 4);
+        const token = crypto.randomBytes(bytes).toString('base64').slice(0, length).replace(/\+/g, '0').replace(/\//g, '0')
         const dategen = Date.now()
         const validUntil = Math.round(dategen + (10 * 60000))  // 10 minutes
 
         const testValue = (validUntil - Date.now()) / 60000
-        const bytes = Math.ceil(32 * 3 / 4);
-        const testToken = crypto.randomBytes(bytes).toString('base64').slice(0, 32).replace(/\+/g, '0').replace(/\//g, '0')
 
         const returnData = {
             token: token,
             date: dategen,
             validUntil: validUntil,
-            minutes: testValue,
-            testToken: testToken
+            minutes: testValue
         }
 
         const updatedUser = await User.findByIdAndUpdate(user._id, {Token: token, ValidUntil: validUntil})
