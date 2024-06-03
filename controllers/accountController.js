@@ -1,6 +1,5 @@
 const Account = require('../models/account')
 const User = require('../models/user')
-const bcrypt = require('bcrypt')
 
 const getAccounts = async (req, res) => {
     try {

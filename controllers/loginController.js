@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const crypto = require('crypto')
 
 const authenticate = async (req, res) => {
     try {
@@ -12,6 +13,8 @@ const authenticate = async (req, res) => {
     }
 }
 
+//TODO: Change token from bcypt to random bytes
+
 const tokenGenerator = async (req, res) => {
     try {
         const { Username, PasswordHash } = req.body
@@ -21,12 +24,15 @@ const tokenGenerator = async (req, res) => {
         const validUntil = Math.round(dategen + (10 * 60000))  // 10 minutes
 
         const testValue = (validUntil - Date.now()) / 60000
+        const bytes = Math.ceil(32 * 3 / 4);
+        const testToken = crypto.randomBytes(bytes).toString('base64').slice(0, 32).replace(/\+/g, '0').replace(/\//g, '0')
 
         const returnData = {
             token: token,
             date: dategen,
             validUntil: validUntil,
-            minutes: testValue
+            minutes: testValue,
+            testToken: testToken
         }
 
         const updatedUser = await User.findByIdAndUpdate(user._id, {Token: token, ValidUntil: validUntil})
