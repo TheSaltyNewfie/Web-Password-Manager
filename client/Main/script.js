@@ -1,4 +1,5 @@
 const passwordArea = document.querySelector("#passwordArea")
+const logoutButton = document.querySelector("#logout")
 
 const TOKEN = localStorage.getItem('token')
 const endpoint = "http://127.0.0.1:3000/accounts"
@@ -32,4 +33,11 @@ async function listAccounts() {
     })
 }
 
+function logout() {
+    localStorage.removeItem('token')
+    window.location.href = "http://127.0.0.1:5500/client/index.html"
+}
+
 document.addEventListener("DOMContentLoaded", listAccounts)
+
+logoutButton.addEventListener("click", logout)

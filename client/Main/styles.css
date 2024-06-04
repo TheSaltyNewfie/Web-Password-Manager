@@ -3,6 +3,7 @@
 body {
     display: flex;
     font-family: "Ubuntu Sans", sans-serif;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #525252;
@@ -44,10 +45,21 @@ a:hover {
     color: #CA3E47;
 }
 
-#passwordArea {
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: #313131;
+}
+
+#passwordArea {
+    display: flex; /* Added this line */
     align-items: center;
     justify-content: start;
     flex-direction: row;
-    flex-flow: row wrap;
+    flex-wrap: wrap; /* Changed from 'flex-flow: row wrap' */
 }
