@@ -3,7 +3,7 @@ const User = require('../models/user')
 
 const getAccounts = async (req, res) => {
     try {
-        const {Token} = req.body
+        const Token = req.get('Token')
         
         const user = await User.findOne({Token: Token})
 
@@ -38,7 +38,7 @@ const addAccount = async (req, res) => {
 
         const account = new Account({UserID: user._id, WebsiteName, WebsiteURL, Username, Password})
         await account.save()
-        return res.status(201).json({ data: account })
+        return res.status(201).json({ account })
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
@@ -50,7 +50,7 @@ const deleteAccount = async (req, res) => {
 
         const account = await Account.findByIdAndDelete(_id)
 
-        return res.status(200).json({ data: account })
+        return res.status(200).json({ account })
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }
@@ -72,7 +72,7 @@ const updateAccount = async (req, res) => {
 
         const account = await Account.findByIdAndUpdate(_id, {WebsiteName, WebsiteURL, Username, Password})
 
-        return res.status(200).json({ data: account })
+        return res.status(200).json({ account })
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }

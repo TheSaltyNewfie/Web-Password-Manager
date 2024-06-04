@@ -35,3 +35,19 @@ button:hover {
     border-radius: 0.5rem;
     background-color: #313131;
 }
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #CA3E47;
+}
+
+#passwordArea {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    flex-flow: row wrap;
+}
