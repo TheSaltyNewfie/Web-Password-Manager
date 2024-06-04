@@ -24,7 +24,19 @@ button:hover {
     background-color: #CA3E47;
 }
 
-#card, #passwordInfo {
+#card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    background-color: #313131;
+
+}
+
+#passwordInfo {
     display: flex;
     flex-direction: column;
     justify-content: center;
