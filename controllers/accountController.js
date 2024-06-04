@@ -16,7 +16,7 @@ const getAccounts = async (req, res) => {
         }
 
         const accounts = await Account.find({UserID: user._id})
-        return res.status(200).json({ data: accounts })
+        return res.status(200).json({ accounts })
     } catch (error) {
         return res.status(500).json({ error: error.message })
     }

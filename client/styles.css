@@ -10,7 +10,21 @@ body {
     height: 100vh;
 }
 
+input {
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
 button {
+    background-color: #414141;
+    color:white;
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
+button:hover {
     background-color: #CA3E47;
 }
 

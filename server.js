@@ -18,8 +18,6 @@ app.get('/', (req, res) => {
     res.send('Server is running!')
 })
 
-//TODO: Implement the login route
-//app.post('/login', loginController.authenticate)
 app.post('/token', loginController.tokenGenerator)
 
 app.get('/accounts', accountController.getAccounts)

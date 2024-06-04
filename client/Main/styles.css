@@ -11,6 +11,15 @@ body {
 }
 
 button {
+    background-color: #414141;
+    color:white;
+    border: 0;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    margin: 0.25rem;
+}
+
+button:hover {
     background-color: #CA3E47;
 }
 
@@ -19,7 +28,7 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: space-evenly;
-    padding: 1.5rem;
+    padding: 1rem;
     margin-left: 0.25rem;
     margin-right: 0.25rem;
     margin-bottom: 0.25rem;
