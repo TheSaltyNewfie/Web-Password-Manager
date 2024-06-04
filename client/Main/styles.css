@@ -14,7 +14,7 @@ button {
     background-color: #CA3E47;
 }
 
-#card {
+#card, #passwordInfo {
     display: flex;
     flex-direction: column;
     justify-content: center;
