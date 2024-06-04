@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #525252;
+    height: 100vh;
+}
+button {
+    background-color: #CA3E47;
+}
+
+#card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-evenly;
+    padding: 1.5rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.5rem;
+    background-color: #313131;
+}
