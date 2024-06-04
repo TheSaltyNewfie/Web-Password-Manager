@@ -1,6 +1,7 @@
 const passwordArea = document.querySelector("#passwordArea")
 const logoutButton = document.querySelector("#logout")
 const addAccountButton = document.querySelector("#addAccount")
+const deleteAllButton = document.querySelector("#deleteAll")
 const body = document.querySelector("body")
 
 const TOKEN = localStorage.getItem('token')
@@ -50,29 +51,73 @@ async function addAccount() {
     })
 
     console.log(res)
+
+    document.body.removeChild(card);
+    document.body.removeChild(overlay);
+
+    passwordArea.innerHTML = ""
+
+    await listAccounts()
 }
 
 async function accountDialog() {
-    body.innerHTML += `
-        <div id="overlay"></div>
-        <div id="card" class="accountDialog">
-            <input id="websiteName" type="text" placeholder="Website Name" autocomplete="off">
-            <input id="websiteURL" type="text" placeholder="Website URL" autocomplete="off">
-            <input id="username" type="text" placeholder="Website Username" autocomplete="off">
-            <input id="password" type="password" placeholder="Website Password" autocomplete="off">
-            <button id="submit">Submit</button>
-            <button id="cancel">Cancel</button>
-        </div>
-    `
+    const overlay = document.createElement('div');
+    overlay.id = 'overlay';
+
+    const card = document.createElement('div');
+    card.id = 'card';
+    card.className = 'dialog';
+    card.innerHTML = `
+        <input id="websiteName" type="text" placeholder="Website Name" autocomplete="off">
+        <input id="websiteURL" type="text" placeholder="Website URL" autocomplete="off">
+        <input id="username" type="text" placeholder="Website Username" autocomplete="off">
+        <input id="password" type="password" placeholder="Website Password" autocomplete="off">
+        <button id="submit" class="password-card-button">Submit</button>
+        <button id="cancel" class="password-card-button">Cancel</button>
+    `;
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(card);
 
     const submit = document.querySelector("#submit")
     const cancel = document.querySelector("#cancel")
 
     submit.addEventListener("click", addAccount)
     cancel.addEventListener("click", async function() {
-        document.querySelector("#card").remove()
-        document.querySelector("#overlay").remove()
+        document.body.removeChild(card);
+        document.body.removeChild(overlay);
     })
+}
+
+async function deleteAll() {
+    // TODO: Implement deleteAll
+}
+
+async function deleteAllDialog() {
+    const overlay = document.createElement('div');
+    overlay.id = 'overlay';
+
+    const card = document.createElement('div');
+    card.id = 'card';
+    card.className = 'dialog';
+    card.innerHTML = `
+        <h1>Are you sure you want to delete all accounts?</h1>
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    `;
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(card);
+
+    const yes = document.querySelector("#yes")
+    const no = document.querySelector("#no")
+
+    yes.addEventListener("click", deleteAll)
+    no.addEventListener("click", async function() {
+        document.body.removeChild(card);
+        document.body.removeChild(overlay);
+    })
+
 }
 
 function logout() {
@@ -85,3 +130,5 @@ document.addEventListener("DOMContentLoaded", listAccounts)
 logoutButton.addEventListener("click", logout)
 
 addAccountButton.addEventListener("click", accountDialog)
+
+deleteAllButton.addEventListener("click", deleteAllDialog)
