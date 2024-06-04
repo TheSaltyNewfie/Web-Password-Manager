@@ -46,9 +46,9 @@ const addAccount = async (req, res) => {
 
 const deleteAccount = async (req, res) => {
     try {
-        const {Token, Id} = req.body
+        const {Token, _id} = req.body
 
-        const account = await Account.findByIdAndDelete(ID)
+        const account = await Account.findByIdAndDelete(_id)
 
         return res.status(200).json({ data: account })
     } catch (error) {
@@ -58,9 +58,19 @@ const deleteAccount = async (req, res) => {
 
 const updateAccount = async (req, res) => {
     try {
-        const {Token, Id} = req.body
+        const {Token, _id, WebsiteName, WebsiteURL, Username, Password} = req.body
 
-        const account = await Account.findByIdAndUpdate(ID)
+        const user = await User.findOne({Token: Token})
+
+        if(!user) {
+            return res.status(401).json({ error: 'Invalid token' })
+        }
+
+        if(user.ValidUntil < Date.now()) {
+            return res.status(401).json({ error: 'Token expired' })
+        }
+
+        const account = await Account.findByIdAndUpdate(_id, {WebsiteName, WebsiteURL, Username, Password})
 
         return res.status(200).json({ data: account })
     } catch (error) {
