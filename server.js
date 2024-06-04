@@ -24,6 +24,8 @@ app.post('/token', loginController.tokenGenerator)
 
 app.get('/accounts', accountController.getAccounts)
 app.post('/accounts', accountController.addAccount)
+app.put('/accounts', accountController.updateAccount)
+app.delete('/accounts', accountController.deleteAccount)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)

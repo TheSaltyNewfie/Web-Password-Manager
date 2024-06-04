@@ -44,7 +44,33 @@ const addAccount = async (req, res) => {
     }
 }
 
+const deleteAccount = async (req, res) => {
+    try {
+        const {Token, Id} = req.body
+
+        const account = await Account.findByIdAndDelete(ID)
+
+        return res.status(200).json({ data: account })
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+const updateAccount = async (req, res) => {
+    try {
+        const {Token, Id} = req.body
+
+        const account = await Account.findByIdAndUpdate(ID)
+
+        return res.status(200).json({ data: account })
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 module.exports = {
     getAccounts,
-    addAccount
+    addAccount,
+    deleteAccount,
+    updateAccount
 }

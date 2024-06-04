@@ -2,19 +2,6 @@ const User = require('../models/user')
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
 
-const authenticate = async (req, res) => {
-    try {
-        const { Username, PasswordHash } = req.body
-        const user = await User.findOne({Username: Username, PasswordHash: PasswordHash})
-        console.log(user)
-        return res.status(200).json({ data: user })
-    } catch (error) {
-        return res.status(500).json({ error: error.message })
-    }
-}
-
-//TODO: Change token from bcypt to random bytes
-
 const tokenGenerator = async (req, res) => {
     try {
         const { Username, PasswordHash } = req.body
@@ -43,6 +30,5 @@ const tokenGenerator = async (req, res) => {
 }
 
 module.exports = {
-    authenticate,
     tokenGenerator
 }
