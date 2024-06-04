@@ -33,6 +33,7 @@ button:hover {
     margin: 1rem;
     border-radius: 0.5rem;
     background-color: #313131;
+    z-index: 1000;
 
 }
 
@@ -74,4 +75,27 @@ header {
     justify-content: start;
     flex-direction: row;
     flex-wrap: wrap; /* Changed from 'flex-flow: row wrap' */
+}
+
+.accountDialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    /* Add other styles as needed */
+    display: none; /* Initially hidden */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Below the card */
 }

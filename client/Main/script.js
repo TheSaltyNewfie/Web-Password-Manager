@@ -1,6 +1,7 @@
 const passwordArea = document.querySelector("#passwordArea")
 const logoutButton = document.querySelector("#logout")
-const addPasswordButton = document.querySelector("#addPassword")
+const addAccountButton = document.querySelector("#addAccount")
+const body = document.querySelector("body")
 
 const TOKEN = localStorage.getItem('token')
 const endpoint = "http://127.0.0.1:3000/accounts"
@@ -51,6 +52,29 @@ async function addAccount() {
     console.log(res)
 }
 
+async function accountDialog() {
+    body.innerHTML += `
+        <div id="overlay"></div>
+        <div id="card" class="accountDialog">
+            <input id="websiteName" type="text" placeholder="Website Name" autocomplete="off">
+            <input id="websiteURL" type="text" placeholder="Website URL" autocomplete="off">
+            <input id="username" type="text" placeholder="Website Username" autocomplete="off">
+            <input id="password" type="password" placeholder="Website Password" autocomplete="off">
+            <button id="submit">Submit</button>
+            <button id="cancel">Cancel</button>
+        </div>
+    `
+
+    const submit = document.querySelector("#submit")
+    const cancel = document.querySelector("#cancel")
+
+    submit.addEventListener("click", addAccount)
+    cancel.addEventListener("click", async function() {
+        document.querySelector("#card").remove()
+        document.querySelector("#overlay").remove()
+    })
+}
+
 function logout() {
     localStorage.removeItem('token')
     window.location.href = "http://127.0.0.1:5500/client/index.html"
@@ -59,3 +83,5 @@ function logout() {
 document.addEventListener("DOMContentLoaded", listAccounts)
 
 logoutButton.addEventListener("click", logout)
+
+addAccountButton.addEventListener("click", accountDialog)
