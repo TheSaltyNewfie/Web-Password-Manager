@@ -11,6 +11,8 @@ const userEndpoint = "http://192.168.4.123:3000/users"
 
 console.log(TOKEN)
 
+let passwords = {}
+
 async function listAccounts() {
     let res = await axios.get(endpoint, {
         headers: {
@@ -38,6 +40,8 @@ async function listAccounts() {
                 <button id="editButton_${account._id}">Edit</button>
             </div>
         `
+
+        passwords[account.WebsiteName] = account._id
     })
 
 
