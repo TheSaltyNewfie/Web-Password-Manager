@@ -11,7 +11,7 @@ async function login() {
     const res = await axios.post(tokenEndpoint, {
         Username: username.value,
         Password: password.value
-    })
+    }).catch()
 
     const token = res.data.token
 
@@ -63,7 +63,8 @@ async function createUserDialog() {
     })
 
     cancel.addEventListener("click", async function () {
-        
+        document.body.removeChild(card)
+        document.body.removeChild(overlay)
     })
 }
 

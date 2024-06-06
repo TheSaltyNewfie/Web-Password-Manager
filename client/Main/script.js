@@ -11,6 +11,8 @@ const userEndpoint = "http://192.168.4.123:3000/users"
 
 console.log(TOKEN)
 
+let passwords = {}
+
 async function listAccounts() {
     let res = await axios.get(endpoint, {
         headers: {
@@ -27,16 +29,35 @@ async function listAccounts() {
     res.data.accounts.forEach(account => {
         passwordArea.innerHTML += `
             <div id="passwordInfo">
-                <h1>${account.WebsiteName}</h1>
+                <h2>${account.WebsiteName}</h2>
                 <a href="${account.WebsiteURL}">URL</a>
                 <p>Username: ${account.Username}</p>
                 <p>Password: ${account.Password}</p>
                 <p>ID: ${account._id}</p>
-                <button id="deleteButton">Delete</button>
-                <button id="editButton">Edit</button>
+                <button id="deleteButton_${account._id}">Delete</button>
+                <button id="editButton_${account._id}">Edit</button>
             </div>
         `
+
+        passwords[account.WebsiteName] = account._id
     })
+
+    for(let key in passwords) {
+        if(passwords.hasOwnProperty(key)) {
+            console.log(passwords[key])
+
+            let delBtn = document.querySelector(`deleteButton_${passwords[key]}`)
+            let editBtn = document.querySelector(`editButton_${passwords[key]}`)
+
+            delBtn.addEventListener("click", async function() {
+                console.log(`Hello from deleteButton_${passwords[key]}`)
+            })
+
+            editBtn.addEventListener("click", async function() {
+                console.log(`Hello from editButton_${passwords[key]}`)
+            })
+        }
+    }
 }
 
 async function addAccount() {
@@ -90,6 +111,10 @@ async function accountDialog() {
         document.body.removeChild(card)
         document.body.removeChild(overlay)
     })
+}
+
+async function deletePassword(id) {
+    // TODO: Implement deletePassword
 }
 
 async function deleteAll() {
