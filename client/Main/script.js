@@ -42,6 +42,8 @@ async function listAccounts() {
         passwords[account.WebsiteName] = account._id
     })
 
+    // TODO: Move the for loop up into the forEach loop
+
     for(let key in passwords) {
         if(passwords.hasOwnProperty(key)) {
             console.log(passwords[key])
@@ -139,7 +141,14 @@ async function deletePassword(id) {
 }
 
 async function deleteAll() {
-    // TODO: Implement deleteAll
+    for(let key in passwords) {
+        deletePassword(passwords[key])
+        console.log(`Deleted: ${passwords[key]}`)
+    }
+
+    passwordArea.innerHTML = ""
+
+    listAccounts()
 }
 
 async function deleteAllDialog() {
@@ -161,7 +170,11 @@ async function deleteAllDialog() {
     const yes = document.querySelector("#yes")
     const no = document.querySelector("#no")
 
-    yes.addEventListener("click", deleteAll)
+    yes.addEventListener("click", async function() {
+        await deleteAll()
+        document.body.removeChild(card)
+        document.body.removeChild(overlay)
+    })
     no.addEventListener("click", async function() {
         document.body.removeChild(card)
         document.body.removeChild(overlay)
