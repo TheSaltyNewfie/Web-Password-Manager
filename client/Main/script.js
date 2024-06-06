@@ -3,6 +3,7 @@ const logoutButton = document.querySelector("#logout")
 const addAccountButton = document.querySelector("#addAccount")
 const deleteAllButton = document.querySelector("#deleteAll")
 const accountButton = document.querySelector("#account")
+const generatePasswordButton = document.querySelector("#generatePassword")
 const body = document.querySelector("body")
 
 const TOKEN = localStorage.getItem('token')
@@ -296,6 +297,45 @@ async function accountDetails() {
 
 }
 
+async function generatePasswordDialog() {
+    const overlay = document.createElement('div')
+    overlay.id = 'overlay'
+
+    const card = document.createElement('div')
+    card.id = 'card'
+    card.className = 'dialog'
+    card.innerHTML = `
+        <h1>Password Generator</h1>
+        <input id="length" type="number">
+        <p id="generated-password"></p>
+        <button id="generate">Generate</button>
+        <button id="close">Close</button>
+    `
+
+    document.body.appendChild(overlay)
+    document.body.appendChild(card)
+
+    const pwLength = document.getElementById("length")
+    const passwordField = document.getElementById("generated-password")
+    const genButton = document.getElementById("generate")
+    const closeButton = document.getElementById("close")
+
+    genButton.addEventListener("click", async function() {
+        console.log(pwLength.value)
+        passwordField.textContent = `Password: ${(await generatePassword(pwLength.value)).toString()}`
+    })
+}
+
+async function generatePassword(length) {
+    const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+    let password = ""
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length)
+        password += charset[randomIndex]
+    }
+    return password
+}
+
 function logout() {
     localStorage.removeItem('token')
     window.location.href = "http://192.168.4.123:5500/client/index.html"
@@ -310,3 +350,5 @@ addAccountButton.addEventListener("click", accountDialog)
 deleteAllButton.addEventListener("click", deleteAllDialog)
 
 accountButton.addEventListener("click", accountDetails)
+
+generatePasswordButton.addEventListener("click", generatePasswordDialog)
