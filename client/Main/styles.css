@@ -6,8 +6,8 @@ body {
     display: flex;
     font-family: "Ubuntu Sans", sans-serif;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     background-color: #525252;
     color:white;
     height: 100vh;
@@ -51,7 +51,7 @@ button:hover {
     margin-bottom: 0.25rem;
     border-radius: 0.5rem;
     background-color: #313131;
-    max-width: 250px;
+    max-width: fit-content;
 }
 
 a {
@@ -65,7 +65,7 @@ a:hover {
 header {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,11 +74,10 @@ header {
 }
 
 #passwordArea {
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items: start;
     justify-content: start;
-    flex-direction: row;
-    flex-wrap: wrap;
+    margin-top: 2rem;
 }
 
 .dialog {
@@ -99,4 +98,113 @@ header {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
+}
+
+/* UI gets funky after this point */
+
+@media only screen and (max-width: 1087px) { 
+    body {
+        display: flex;
+        font-family: "Ubuntu Sans", sans-serif;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #525252;
+        color:white;
+        height: 100vh;
+        min-width: 1087;
+    }
+
+    h1, p, a, button {
+        font-size: 12px;
+    }
+    
+    button {
+        background-color: #414141;
+        color:white;
+        border: 0;
+        border-radius: 0.25rem;
+        padding: 0.25rem;
+        margin: 0.25rem auto 0.25rem auto;
+        min-width: 200px;
+    }
+    
+    button:hover {
+        background-color: #CA3E47;
+    }
+    
+    #card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: space-evenly;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 0.5rem;
+        background-color: #313131;
+        z-index: 1000;
+    
+    }
+    
+    #passwordInfo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: space-evenly;
+        padding: 1rem;
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+        margin-bottom: 0.25rem;
+        border-radius: 0.5rem;
+        background-color: #313131;
+        max-width: fit-content;
+    }
+    
+    a {
+        color: white;
+    }
+    
+    a:hover {
+        color: #CA3E47;
+    }
+    
+    header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        background-color: #313131;
+    }
+    
+    #passwordArea {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .dialog {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: white;
+        border-radius: 8px;
+    }
+    
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    
 }

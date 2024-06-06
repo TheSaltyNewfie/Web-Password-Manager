@@ -5,6 +5,7 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const loginController = require('./controllers/loginController')
 const accountController = require('./controllers/accountController')
+const userController = require('./controllers/userController')
 
 const PORT = process.env.PORT || 3000
 
@@ -24,6 +25,9 @@ app.get('/accounts', accountController.getAccounts)
 app.post('/accounts', accountController.addAccount)
 app.put('/accounts', accountController.updateAccount)
 app.delete('/accounts', accountController.deleteAccount)
+
+app.get('/users', userController.getUser)
+app.post('/users', userController.createUser)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
