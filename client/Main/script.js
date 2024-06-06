@@ -46,15 +46,20 @@ async function listAccounts() {
         if(passwords.hasOwnProperty(key)) {
             console.log(passwords[key])
 
-            let delBtn = document.querySelector(`deleteButton_${passwords[key]}`)
-            let editBtn = document.querySelector(`editButton_${passwords[key]}`)
+            const delBtn = document.querySelector(`#deleteButton_${passwords[key]}`)
+            const editBtn = document.querySelector(`#editButton_${passwords[key]}`)
 
             delBtn.addEventListener("click", async function() {
-                console.log(`Hello from deleteButton_${passwords[key]}`)
+                alert(`Hello from deleteButton_${passwords[key]}`)
+                deletePassword(passwords[key])
             })
 
             editBtn.addEventListener("click", async function() {
-                console.log(`Hello from editButton_${passwords[key]}`)
+                alert(`Hello from editButton_${passwords[key]}`)
+
+                passwordArea.innerHTML = ""
+
+                await listAccounts()
             })
         }
     }
@@ -114,7 +119,23 @@ async function accountDialog() {
 }
 
 async function deletePassword(id) {
-    // TODO: Implement deletePassword
+    const res = await axios.delete(`${endpoint}/${id}`, {
+        headers: {
+            "Token": TOKEN
+        }
+    }).catch(function(error) {
+        if(error.response.status == 401) {
+            alert(`${error.response.error}`)
+        }
+
+        if(error.response.status == 500) {
+            alert("Error 500")
+        }
+    })
+
+    passwordArea.innerHTML = ""
+
+    listAccounts()
 }
 
 async function deleteAll() {

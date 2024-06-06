@@ -24,7 +24,7 @@ app.post('/token', loginController.tokenGenerator)
 app.get('/accounts', accountController.getAccounts)
 app.post('/accounts', accountController.addAccount)
 app.put('/accounts', accountController.updateAccount)
-app.delete('/accounts', accountController.deleteAccount)
+app.delete('/accounts/:id', accountController.deleteAccount)
 
 app.get('/users', userController.getUser)
 app.post('/users', userController.createUser)

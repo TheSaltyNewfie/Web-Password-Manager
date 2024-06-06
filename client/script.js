@@ -11,7 +11,11 @@ async function login() {
     const res = await axios.post(tokenEndpoint, {
         Username: username.value,
         Password: password.value
-    }).catch()
+    }).catch(function(error) {
+        if(error.response.status == 401) {
+            alert("You have entered a wrong password or username")
+        }
+    })
 
     const token = res.data.token
 

@@ -46,11 +46,16 @@ const addAccount = async (req, res) => {
 
 const deleteAccount = async (req, res) => {
     try {
-        const {Token, _id} = req.body
+        const Token = req.get('Token')
+        const _id = req.params.id
+
+        console.log(`Token: ${Token}\n_id: ${_id}`)
 
         const user = await User.findOne({Token: Token})
 
         if(!user) {
+            console.log(user)
+
             return res.status(401).json({ error: 'Invalid token' })
         }
 
