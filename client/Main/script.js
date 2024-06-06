@@ -324,6 +324,11 @@ async function generatePasswordDialog() {
         console.log(pwLength.value)
         passwordField.textContent = `Password: ${(await generatePassword(pwLength.value)).toString()}`
     })
+
+    closeButton.addEventListener("click", async function() {
+        document.body.removeChild(card)
+        document.body.removeChild(overlay)
+    })
 }
 
 async function generatePassword(length) {
