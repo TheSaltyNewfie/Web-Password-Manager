@@ -73,7 +73,7 @@ async function listAccounts() {
             const no = document.querySelector("#no")
 
             yes.addEventListener("click", async function() {
-                deletePassword(passwords[key])
+                deletePassword(account._id)
                 document.body.removeChild(card)
                 document.body.removeChild(overlay)
             })
