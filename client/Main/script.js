@@ -306,6 +306,7 @@ async function generatePasswordDialog() {
     card.className = 'dialog'
     card.innerHTML = `
         <h1>Password Generator</h1>
+        <p>Length:</p>
         <input id="length" type="number">
         <p id="generated-password"></p>
         <button id="generate">Generate</button>
