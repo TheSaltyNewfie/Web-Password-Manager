@@ -7,7 +7,7 @@ const loginController = require('./controllers/loginController')
 const accountController = require('./controllers/accountController')
 const userController = require('./controllers/userController')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 const app = express()
 app.use(cors())

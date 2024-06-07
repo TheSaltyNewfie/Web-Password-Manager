@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+
+#card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-evenly;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  background-color: #313131;
+  z-index: 1000;
+
+}
+
+#passwordInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-evenly;
+  padding: 1rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: #313131;
+  min-width: 250px;
+}
