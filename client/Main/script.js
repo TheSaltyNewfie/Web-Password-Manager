@@ -312,7 +312,7 @@ async function generatePasswordDialog() {
         <button id="generate">Generate</button>
         <button id="close">Close</button>
     `
-
+    
     document.body.appendChild(overlay)
     document.body.appendChild(card)
 

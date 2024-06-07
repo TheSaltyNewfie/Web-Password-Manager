@@ -26,7 +26,7 @@ Accounts is the child of User
 ## What will I use to make this
 I will be using the following technologies
 - MongoDB
-- Bcrypt (For password hashes and tokens)
+- Crypto Library (For password hashes and tokens)
 - Express
 I may add more over time.
 
