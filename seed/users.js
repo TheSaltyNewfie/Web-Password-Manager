@@ -17,18 +17,6 @@ const main = async () => {
         Email: 'admin@thesaltynewfie.ca',
         Token: 'null',
     },
-    {
-        Username: 'JohnDoe',
-        PasswordHash: 'password',
-        Email: 'johndoe@gmail.com',
-        Token: 'null'
-    },
-    {
-        Username: 'mkds312',
-        PasswordHash: 'Nobody13',
-        Email: 'mkds312@hotmail.com',
-        Token: 'null'
-    }
 ]
  
     await User.insertMany(users)

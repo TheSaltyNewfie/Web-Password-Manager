@@ -6,9 +6,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 const main = async () => {
     const Admin = await User.find({ Username: 'admin' })
-    const JohnDoe = await User.find({ Username: 'JohnDoe' })
     const adminID = Admin[0]._id
-    const johnDoeID = JohnDoe[0]._id
 
     const accounts = [
         {
@@ -150,28 +148,6 @@ const main = async () => {
             WebsiteURL: 'https://www.netflix.com',
             Username: 'adminNetflix',
             Password: 'netflixAdmin901'
-        },
-        {
-            UserID: johnDoeID,
-            WebsiteName: 'Facebook',
-            WebsiteURL: 'https://www.facebook.com',
-            Username: 'JohnDoe113',
-            Password: 'password12314'
-        },
-        {
-            UserID: johnDoeID,
-            WebsiteName: 'Twitter',
-            WebsiteURL: 'https://www.twitter.com',
-            Username: 'JohnDoe',
-            Password: 'p4ssw0rd'
-        },
-        {
-            UserID: johnDoeID,
-            WebsiteName: 'Instagram',
-            WebsiteURL: 'https://www.instagram.com',
-            Username: 'JohnDoe',
-            Password: 'd0rwss4p'
-        
         }
 ]
  
